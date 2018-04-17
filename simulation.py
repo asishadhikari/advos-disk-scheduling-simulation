@@ -1,6 +1,8 @@
 # 2150, 2069, 1212, 2296, 2800, 544, 1618, 356, 1523, 4965, 3681
 #First Come first Serve scheduling algorithm
+import copy
 def FCFS_simul(req,head):
+	req = copy.copy(req)
 	distance_moved = 0  #distance
 	cur_head = head
 	for track in req:
@@ -10,6 +12,7 @@ def FCFS_simul(req,head):
 
 # Shortest Seek Time first Algorithm
 def SSTF_simul(req,head):
+	req = copy.copy(req)
 	cur_head = head
 	distance_moved = 0
 	response = 0
@@ -32,6 +35,7 @@ def SSTF_simul(req,head):
 	return distance_moved
 #SCAN algorithm
 def SCAN_simul(req,head):
+	req = copy.copy(req)
 	cur_head = head
 	distance_moved = 0
 	max_request = max(req)
@@ -54,6 +58,7 @@ def SCAN_simul(req,head):
 	return distance_moved
 
 def LOOK_simul(req,head):
+	req = copy.copy(req)
 	cur_head = head
 	distance_moved = 0	
 	max_request = max(req)
@@ -71,6 +76,7 @@ def LOOK_simul(req,head):
 	return distance_moved
 
 def CSCAN_simul(req,head):
+	req = copy.copy(req)
 	cur_head = head
 	distance_moved = 0
 	max_request = max(req)
@@ -80,8 +86,8 @@ def CSCAN_simul(req,head):
 			distance_moved+=abs(cur_head-i)
 			cur_head = i
 			req.remove(i)
-	distance_moved = abs(cur_head-end)
 	#move to the start
+	distance_moved += abs(cur_head-end)
 	distance_moved += end
 	cur_head = 0
 	for i in range(0, max_request+1):
@@ -92,29 +98,36 @@ def CSCAN_simul(req,head):
 	return distance_moved
 
 def CLOOK_simul(req,head):
+	req = copy.copy(req)
 	cur_head = head
 	distance_moved = 0
 	max_request = max(req)
-	for i in range(cur_head, max_request+1):
+	min_request = min(req)
+	for i in range(cur_head, min_request-1,-1):
 		if (i in req):
 			distance_moved += abs(cur_head - i)
 			cur_head = i
-			req.remove(i)
-	next_item = max_request 
-	distance_moved += next_item
-	cur_head = min(req)
-	for i in range(0, max_request+1):
+			req.remove(i) 
+	distance_moved += abs(cur_head-max_request)
+	cur_head = max_request
+	for i in range(max_request,head-1,-1):
 		if (i in req):
 			distance_moved += abs(cur_head - i)
 			cur_head = i
 			req.remove(i)
 	return distance_moved
 
+# [2069, 1212, 2296, 2800, 544, 1618, 356, 1523, 4965, 3681],2150)
 
-
-
-
-
-
-SSTF_simul([2069, 1212, 2296, 2800, 544, 1618, 356, 1523, 4965, 3681],2150)
-FCFS_simul([2069, 1212, 2296, 2800, 544, 1618, 356, 1523, 4965, 3681],2150)
+if __name__ == "__main__":
+	f = open('data','r')
+	head_position = int(f.readline())
+	req = list(map(int,f.readline().strip().split(" ")))
+	print("Total distance moved for FCFS  is ",FCFS_simul(req,head_position))
+	print("Total distance moved for SSTF  is ",SSTF_simul(req,head_position))
+	print("Total distance moved for SCAN  is ",SCAN_simul(req,head_position))
+	print("Total distance moved for LOOK  is ",LOOK_simul(req,head_position))
+	print("Total distance moved for CSCAN is ",CSCAN_simul(req,head_position))
+	print("Total distance moved for CLOOK is ",CLOOK_simul(req,head_position))
+	
+	
