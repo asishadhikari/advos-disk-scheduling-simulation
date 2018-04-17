@@ -70,6 +70,49 @@ def LOOK_simul(req,head):
 		max_request -= 1
 	return distance_moved
 
+def CSCAN_simul(req,head):
+	cur_head = head
+	distance_moved = 0
+	max_request = max(req)
+	end = 4999
+	for i in range(cur_head,max_request+1):
+		if (i in req):
+			distance_moved+=abs(cur_head-i)
+			cur_head = i
+			req.remove(i)
+	distance_moved = abs(cur_head-end)
+	#move to the start
+	distance_moved += end
+	cur_head = 0
+	for i in range(0, max_request+1):
+			if (i in req):
+				distance_moved += abs(i-cur_head)
+				cur_head = i
+				req.remove(i)
+	return distance_moved
+
+def CLOOK_simul(req,head):
+	cur_head = head
+	distance_moved = 0
+	max_request = max(req)
+	for i in range(cur_head, max_request+1):
+		if (i in req):
+			distance_moved += abs(cur_head - i)
+			cur_head = i
+			req.remove(i)
+	next_item = max_request 
+	distance_moved += next_item
+	cur_head = min(req)
+	for i in range(0, max_request+1):
+		if (i in req):
+			distance_moved += abs(cur_head - i)
+			cur_head = i
+			req.remove(i)
+	return distance_moved
+
+
+
+
 
 
 
