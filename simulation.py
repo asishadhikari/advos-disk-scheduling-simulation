@@ -1,4 +1,3 @@
-# 2150, 2069, 1212, 2296, 2800, 544, 1618, 356, 1523, 4965, 3681
 #First Come first Serve scheduling algorithm
 import copy
 def FCFS_simul(req,head):
@@ -108,7 +107,7 @@ def CLOOK_simul(req,head):
 			distance_moved += abs(cur_head - i)
 			cur_head = i
 			req.remove(i) 
-	distance_moved += abs(cur_head-max_request)
+	distance_moved += abss(cur_head-max_request)
 	cur_head = max_request
 	for i in range(max_request,head-1,-1):
 		if (i in req):
@@ -116,8 +115,6 @@ def CLOOK_simul(req,head):
 			cur_head = i
 			req.remove(i)
 	return distance_moved
-
-# [2069, 1212, 2296, 2800, 544, 1618, 356, 1523, 4965, 3681],2150)
 
 if __name__ == "__main__":
 	f = open('data','r')

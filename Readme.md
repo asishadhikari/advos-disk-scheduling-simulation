@@ -9,3 +9,11 @@ ___
 * Line 2 represents the space separated cylinder addresses for disk access
 * see data in repo to look at a sample
 * only 3 lines are parsed in this implementation
+
+### Results:
+Total distance moved for FCFS  is  13011
+Total distance moved for SSTF  is  7586
+Total distance moved for SCAN  is  7492
+Total distance moved for LOOK  is  7424
+Total distance moved for CSCAN is  9917
+Total distance moved for CLOOK is  9072
