@@ -16,4 +16,4 @@ Total distance moved for SSTF  is  7586
 Total distance moved for SCAN  is  7492  
 Total distance moved for LOOK  is  7424  
 Total distance moved for CSCAN is  9917  
-Total distance moved for CLOOK is  9072  
+Total distance moved for CLOOK is  9137  
