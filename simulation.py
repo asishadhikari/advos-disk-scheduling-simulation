@@ -102,14 +102,14 @@ def CLOOK_simul(req,head):
 	distance_moved = 0
 	max_request = max(req)
 	min_request = min(req)
-	for i in range(cur_head, min_request-1,-1):
+	for i in range(cur_head, max_request+1):
 		if (i in req):
 			distance_moved += abs(cur_head - i)
 			cur_head = i
 			req.remove(i) 
-	distance_moved += abss(cur_head-max_request)
-	cur_head = max_request
-	for i in range(max_request,head-1,-1):
+	distance_moved += abs(cur_head-min_request)
+	cur_head = min_request
+	for i in range(min_request,head+1):
 		if (i in req):
 			distance_moved += abs(cur_head - i)
 			cur_head = i
@@ -126,5 +126,3 @@ if __name__ == "__main__":
 	print("Total distance moved for LOOK  is ",LOOK_simul(req,head_position))
 	print("Total distance moved for CSCAN is ",CSCAN_simul(req,head_position))
 	print("Total distance moved for CLOOK is ",CLOOK_simul(req,head_position))
-	
-	
